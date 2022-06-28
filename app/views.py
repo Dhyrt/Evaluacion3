@@ -12,19 +12,10 @@ from django.contrib.auth.models import User, Group
 
 # Create your views here.
 def index(request):
-    productosAll = Producto.objects.all()
+    productos = Producto.objects.all()
     datos = {
-        'listaProductos' : productosAll
+        'listaProductos' : productos
     }
-    if request.method == 'POST':
-        carrito = carro()
-        carrito.codigo = request.POST.get('prod_codigo')
-        carrito.nombre = request.POST.get('prod_nombre')
-        carrito.stock = request.POST.get('prod_stock')
-        carrito.precio = request.POST.get('prod_precio')
-        carrito.img = request.POST.get('prod_img')
-        carrito.cant = request.POST.get('prod_cant')
-        carrito.save()
     return render(request, 'app/index.html', datos)   
 
 def fundacion(request):
@@ -64,20 +55,10 @@ def perfil(request):
     return render(request, 'app/perfil.html')
 
 def arbustos(request):
-    productosAll = Producto.objects.all()
+    productos = Producto.objects.all()
     datos = {
-        'listaProductos' : productosAll
+        'listaProductos' : productos
     }
-
-    if request.method == 'POST':
-        carrito = carro()
-        carrito.codigo = request.POST.get('prod_codigo')
-        carrito.nombre = request.POST.get('prod_nombre')
-        carrito.stock = request.POST.get('prod_stock')
-        carrito.precio = request.POST.get('prod_precio')
-        carrito.img = request.POST.get('prod_img')
-        carrito.save()
-        datos['mensaje'] = 'Producto agregado al carro'
     return render(request, 'app/arbustos.html', datos)
 
 @login_required
@@ -94,20 +75,10 @@ def compras(request):
     return render(request, 'app/compras.html', datos)
 
 def flores(request):
-    productosAll = Producto.objects.all()
+    productos = Producto.objects.all()
     datos = {
-        'listaProductos' : productosAll
+        'listaProductos' : productos
     }
-
-    if request.method == 'POST':
-        carrito = carro()
-        carrito.codigo = request.POST.get('prod_codigo')
-        carrito.nombre = request.POST.get('prod_nombre')
-        carrito.stock = request.POST.get('prod_stock')
-        carrito.precio = request.POST.get('prod_precio')
-        carrito.img = request.POST.get('prod_img')
-        carrito.save()
-        datos['mensaje'] = 'Producto agregado al carro'
     return render(request, 'app/flores.html', datos)
 
 @login_required
@@ -138,20 +109,10 @@ def rastreo(request):
     return render(request, 'app/rastreo.html')
 
 def tierraDeHojas(request):
-    productosAll = Producto.objects.all()
+    productos = Producto.objects.all()
     datos = {
-        'listaProductos' : productosAll
+        'listaProductos' : productos
     }
-
-    if request.method == 'POST':
-        carrito = carro()
-        carrito.codigo = request.POST.get('prod_codigo')
-        carrito.nombre = request.POST.get('prod_nombre')
-        carrito.stock = request.POST.get('prod_stock')
-        carrito.precio = request.POST.get('prod_precio')
-        carrito.img = request.POST.get('prod_img')
-        carrito.save()
-        datos['mensaje'] = 'Producto agregado al carro'
     return render(request, 'app/tierraDeHojas.html', datos)
     
 @permission_required('app.add_producto')

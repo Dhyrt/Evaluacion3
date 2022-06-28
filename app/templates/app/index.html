@@ -59,16 +59,7 @@ Tonari No Planta
               <p class="card-text">Codigo: {{ aux.codigo }} </p>
               <p class="card-text">Stock: {{ aux.stock }} </p>
               {% if user.is_authenticated %}
-                <form action="" method="POST">
-                  {% csrf_token %}
-                  <input type="hidden" name="prod_codigo" id="prod_codigo" value="{{ aux.codigo }}">
-                  <input type="hidden" name="prod_nombre" id="prod_nombre" value="{{ aux.nombre }}">
-                  <input type="hidden" name="prod_precio" id="prod_precio" value="{{ aux.precio }}">
-                  <input type="hidden" name="prod_stock" id="prod_stock" value="{{ aux.stock }}">
-                  <input type="hidden" name="prod_img" id="prod_img" value="{{ aux.img }}">
-                  <input type="hidden" name="prod_cant" id="prod_cant" value="1">
-                  <input type="submit" value="Agregar al carro" class="btn btn-success" >
-                </form>
+                <a href="{% url 'Add' aux.codigo %}"><input type="submit" value="Agregar al carro" class="btn btn-success"></a>
               {% endif %}
               <a class="stretched-link" href="{% url 'detalle' aux.codigo %}"></a>
             </div>
