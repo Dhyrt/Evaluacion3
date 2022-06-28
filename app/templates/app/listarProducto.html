@@ -1,0 +1,63 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Lista Productos{% endblock %}
+
+{% block contenido %}
+<div class="mt-2">
+    <table class="table table-condensed table-striped">
+        <thead>
+            <th>CODIGO</th>
+            <th>NOMBRE</th>
+            <th>PRECIO</th>
+            <th>STOCK</th>
+            <th>DESCRIPCION</th>
+            <th>TIPO</th>
+            <th>IMAGEN</th>
+            <th>FECHA_CREACION</th>
+            <th>OPCIONES</th>
+        </thead>
+        <tbody>
+        {% for aux in listaProductos %}
+            <tr>
+                <td>{{ aux.codigo }}</td>
+                <td>{{ aux.nombre }}</td>
+                <td>{{ aux.precio }}</td>
+                <td>{{ aux.stock }}</td>
+                <td>{{ aux.desc }}</td>
+                <td>{{ aux.tipo }}</td>
+                <td><img src="{{ aux.img.url }}" width="100px"></td>
+                <td>{{ aux.created_at }}</td>
+                <td>
+
+                  
+
+                    {% if perms.app.change_producto %}
+                    <a href="{% url 'modificar' aux.codigo %}" style="cursor: pointer;"><i class="fas fa-pencil"></i></a>
+                    {% endif %}  
+                    {% if perms.app.delete_producto %}
+                    <a onclick="confirmDelete({{ aux.codigo }})" style="cursor: pointer;"><i class="fas fa-trash"></i></a>
+                    {% endif %}  
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!--
+<div class="fixed-bottom p-5" style="width: 100%;">
+  <div style="float: right;">
+    <img src="{% static 'app/img/extra.png' %}" width="50px" class="dropdown-toggle" data-bs-toggle="dropdown">
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><h5 class="dropdown-header">Extras</h5></li>
+        {% if perms.app.add_producto %}
+        <li><a class="dropdown-item" href="{% url 'agregar' %}">Agregar</a></li>
+        {% endif %}  
+        <li><a class="dropdown-item" href="{% url 'listarProducto' %}">Lista Productos</a></li>
+        <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+      </ul>
+  </div> 
+</div>
+-->
+{% endblock %}

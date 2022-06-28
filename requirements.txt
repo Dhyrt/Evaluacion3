@@ -1,0 +1,9 @@
+# pip install -r requirements.txt
+django-admin-interface
+django-crispy-forms
+crispy-forms-materialize
+django
+pillow
+mysqlclient
+pymysql
+djangorestframework

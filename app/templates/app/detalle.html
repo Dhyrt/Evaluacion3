@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Tonari No Planta{% endblock %}
+
+{% block contenido %}
+{% for aux in listaProducto %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-5">
+      <img src="{{ aux.img.url }}" alt="" width="300px">
+    </div>
+    <div class="col-sm-7">
+      <h1>{{ aux.nombre }}</h1>
+      <p><small>Codigo: {{ aux.codigo }}</small></p>
+      <h4>Precio: ${{ aux.precio }}</h4>
+      <p>{{ aux.desc }}</p>
+      <p>En stock: {{ aux.stock }}</p>
+        <div class="d-flex">
+          <div class="px-2">
+            {% if user.is_authenticated %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="prod_cod" id="prod_cod" value="{{ aux.codigo }}">
+                <input type="hidden" name="prod_nom" id="prod_nom" value="{{ aux.nombre }}">
+                <input type="hidden" name="prod_prec" id="prod_prec" value="{{ aux.precio }}">
+                <input type="hidden" name="prod_sto" id="prod_sto" value="{{ aux.stock }}">
+                <input type="hidden" name="img" id="img" value="{{ aux.img }}">
+                <input type="submit" value="Lista de deseos" class="btn btn-dark" >
+              </form>
+            {% endif %}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

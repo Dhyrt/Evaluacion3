@@ -1,0 +1,275 @@
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-color: rgb(255, 251, 246);
+}
+
+.bg-lightGreen{
+    background-color: #ebf1f0;
+}
+
+.bg-darkGreen{
+    background-color: #579a70;
+}
+
+.btn-transparent{
+    background-color: rgba(240, 2, 2, 0);
+}
+
+.logo{
+    width: 400px; 
+}
+
+@media(max-width:700px){
+    .logo{
+        width: 170px;
+        height: 40px;
+    }
+}
+
+li{
+    list-style: none;
+}
+
+.nav-item a{
+    color: black;
+    text-decoration: none;
+}
+
+.nav-item a:hover{
+    color: rgb(38, 113, 253);
+    text-decoration: underline;
+}
+
+@media(max-width:700px){
+    .nav-link{ 
+        font-size: 13px;
+        padding: 6px;
+        margin: 0px;
+    }
+}
+
+.flexing{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.line{
+    border-right: 1px solid black;
+    height: 30px;
+    margin-top: 8px;
+    margin: 6px 4px 0px 2px;
+    padding: 0;
+}
+
+@media(max-width:700px){
+    .line{
+        border-right: 1px solid black;
+        height: 22px;
+        margin-top: 8px;
+        margin: 8px 4px 0px 2px;
+        padding: 0;
+    }
+}
+
+.avatar{ 
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+@media(max-width:700px){
+    .avatar{ 
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+    }
+}
+
+.form-control{
+    width: 20rem;
+}
+
+.dropbtn{
+    border-radius: 3px;
+    background-color: rgb(52, 119, 55);
+    color: white;
+}
+
+@media(max-width:700px){
+    .dropbtn{
+        width: 20px;
+        border-radius: 3px;
+        background-color: rgb(52, 119, 55);
+        color: white;
+        padding: 2px;
+    }
+}
+
+.input-group-prepend img{
+    width: 30px;
+}
+
+@media(max-width:700px){
+    .input-group-prepend{
+        display: none;
+    }
+}
+
+.barsize{
+    height: 45px;
+    font-size: 16px;
+}
+
+@media(max-width:700px){
+    .barsize{
+        height: 30px;
+        font-size: 14px;
+    }
+}
+
+.dropprofile{
+    background-color: rgb(52, 119, 55);
+}
+
+.blanco{
+    color: white;
+}
+
+.dropdown-divider{
+    color: white;
+}
+
+.card-cont{
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    margin: 2rem 0 3rem 0;
+}
+
+.card{
+    box-shadow: 3px 5px 15px rgb(58, 58, 58);
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card .btn{
+    z-index: 2;
+    position: relative;
+}
+
+.banner{
+    background-color: rgb(188, 224, 253);
+    box-shadow: 5px 5px  rgb(58, 58, 58);
+}
+
+.activo{
+    background-color: rgb(187, 212, 188);
+    color: black;
+}
+
+
+.m-p{
+    margin: 3rem 0 15px 30px ;
+}
+
+@media(max-width:700px){
+    .m-p{
+        margin: 1rem 0 1rem 0;
+    }
+}
+
+.long-card{
+    max-width: 800px;
+}
+@media(max-width:700px){
+    .long-card{
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+.profile{
+    width: 200px;
+    height: 190px;
+    border-radius: 50%;
+    background-color: rgb(228, 227, 227);
+}
+
+.activ{
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    background-size: cover;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px;
+    text-align: left;
+    padding: 8px;
+  }
+
+.city {
+  background-color: tomato;
+  color: white;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+}
+
+
+.card2 {
+    z-index: 0;
+    background-color: #ECEFF1;
+    padding: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    border-radius: 10px
+}
+
+.top {
+    padding-top: 40px;
+    padding-left: 13% !important;
+    padding-right: 13% !important
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+}
+@media screen and (max-width: 750px) {
+    .icon {
+        width: 40px;
+        height: 40px;
+       justify-content: space-evenly;
+    }
+}
+
+.icon-content {
+    padding-bottom: 20px;
+}
+
+@media screen and (max-width: 750px) {
+    .icon-content {
+        width: 50%;
+    }
+}
+
+@media(max-width:700px){
+    .extra{
+        width: 40px;
+        padding: 0px;
+        margin: 2px;
+    }
+}

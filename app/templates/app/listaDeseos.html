@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Lista de Deseos{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid mt-4">
+  <div>
+      <h1>Lista de deseados</h1>
+  </div>
+</div>
+<div class="container mt-3 mb-3">
+<div class="row justify-content-center">
+  {% for aux in listaDeseo %}
+  <div class="card mb-3 long-card">
+    <div class="row g-0">
+      <div class="col-md-3 py-2">
+        <img src="{{ aux.imag.url }}" class="img-fluid" width="200px">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <h4 class="card-title">{{ aux.nom }}</h4>
+          <p class="card-text">Precio: ${{ aux.prec }}</p>
+          <p class="card-text"><small>Stock: {{ aux.sto }}</small></p>
+          <a href="{% url 'eliminarDeseo' aux.cod %}"><small class="text-muted">Eliminar</small></a>
+        </div>
+      </div>
+      <div class="container-fluid col-md-3">
+        <div class="card-body m-p">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="prod_codigo" id="prod_codigo" value="{{ aux.cod }}">
+            <input type="hidden" name="prod_nombre" id="prod_nombre" value="{{ aux.nom }}">
+            <input type="hidden" name="prod_precio" id="prod_precio" value="{{ aux.prec }}">
+            <input type="hidden" name="prod_stock" id="prod_stock" value="{{ aux.sto }}">
+            <input type="hidden" name="prod_img" id="prod_img" value="{{ aux.imag }}">
+            <input type="submit" value="Agregar al carro" class="btn btn-success" >
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

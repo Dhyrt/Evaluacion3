@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Fundacion{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block contenido %}
+<div class="container">
+    <div class="d-flex justify-content-center mt-5">
+        <img src="{% static 'app/img/fundacion.png' %}" width="100px">
+        <h1>Ayuda Animalitos</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="col-sm-2">
+    </div>
+    <div class="justify-content-center mt-5">
+        <p>Según una encuesta realizada por el Departamento Administrativo Nacional de Estadística, hubo un aumento en el número de mascotas en los hogares entre 2006 y 2017, pasando de 830.000 a más de dos millones, lo que significa un crecimiento de 60%</p>
+        <p>Sin embargo la tasa de abandonos también incrementa. De acuerdo con el mismo estudio, en el país hay cerca de un millón de animales en estado de abandono, cifra que no para de crecer.</p>
+        <p>Por esto se creo la Fundación Ayuda Animalitos, la cual es una fundación dedicada a ayudar a los animales callejeros, especialmente aquellos más necesitados. Nos encargamos de pagar tanto por sus gastos médicos como el costo de los alimentos. También tenemos un programa de adopción al cual ingresan después de estar completamente desparasitados y vacunados.</p>
+        <p>Al suscribirte a nuestra fundación no solo estarás recibiendo un 5% de descuento por el total de todas tus compras sino que también podrás ayudarnos a rescatar, rehabilitar, y dar hogar a miles de animales en situación de calle.</p>
+    </div>
+    <div class="col-sm-2">
+    </div>
+    {% if user.is_authenticated %}
+    <div class="d-flex justify-content-center">
+        <div class="mt-4 col-12 col-lg-auto mb-3 mb-lg-0">
+            <form action="" method="post">
+            {% csrf_token %}
+            {% if suscripcion == true  %}
+                <input type="hidden" name="nom_cli" value="{{ user.username }}">
+                <input type="hidden" name="desus" value="false">
+                <button type="submit" class="btn btn-success mb-3">Cancelar suscripcion</button>
+            {% else %}
+                <input type="hidden" name="nom_cli" value="{{ user.username }}">
+                <input type="hidden" name="sus" value="True">
+                <button type="submit" class="btn btn-success mb-3">Suscribirse</button>
+            {% endif %}
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}
+Tonari No Planta
+{% endblock %}
+
+{% block contenido %}
+<!--Cuerpo-->
+<div class="container mt-3">
+  <div class="col-sm-6"></div>
+  <div id="demo" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <a href="{% url 'fundacion' %}"><img src="{% static 'app/img/fundacionA.png' %}" class="d-block w-100"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'maceteros' %}"><img src="{% static 'app/img/totoAD.png' %}" class="d-block w-100"></a>
+      </div>
+      <div class="carousel-item">
+        <a href="{% url 'tierraDeHojas' %}"><img src="{% static 'app/img/tierrhojAD.png' %}" class="d-block w-100"></a>
+      </div>
+    </div>
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  <div class="col-sm-6"></div>
+</div>
+<div class="container">
+  <div class="col-sm-12 mt-5">
+      <h2>Productos más populares</h2>
+  </div>
+  <div class="container">
+    <div class="row mb-5">
+        {% for aux in listaProductos %}
+        {% if aux.stock <= 10 %}
+        <div class="col-md-4 mx-10 my-3 d-flex justify-content-center">
+          <div class="card" style="width: 18rem;">
+            {% if aux.img %}
+              <img class="card-img-top" style="height: 20rem;" src="{{ aux.img.url }}">
+            {% else %}
+              <img src="{% static 'app/img/img-no-encontrada.png' %}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title"> {{ aux.nombre }} </h5>
+              <p class="card-text">Precio: ${{ aux.precio }}</p>
+              <p class="card-text">Codigo: {{ aux.codigo }} </p>
+              <p class="card-text">Stock: {{ aux.stock }} </p>
+              {% if user.is_authenticated %}
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="prod_codigo" id="prod_codigo" value="{{ aux.codigo }}">
+                  <input type="hidden" name="prod_nombre" id="prod_nombre" value="{{ aux.nombre }}">
+                  <input type="hidden" name="prod_precio" id="prod_precio" value="{{ aux.precio }}">
+                  <input type="hidden" name="prod_stock" id="prod_stock" value="{{ aux.stock }}">
+                  <input type="hidden" name="prod_img" id="prod_img" value="{{ aux.img }}">
+                  <input type="hidden" name="prod_cant" id="prod_cant" value="1">
+                  <input type="submit" value="Agregar al carro" class="btn btn-success" >
+                </form>
+              {% endif %}
+              <a class="stretched-link" href="{% url 'detalle' aux.codigo %}"></a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

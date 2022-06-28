@@ -1,0 +1,85 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid mt-3">
+  <h1>Perfil</h1>
+</div>
+<div class="container mt-3 mb-5">
+  <div class="row justify-content-center">
+      <div class="card long-card">
+          <div class="row g-0">
+            <div class="col-md-3 py-2 mt-3">
+              <img src="{% static 'app/img/userplant.png' %}" class="img-fluid profile" width="200px">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Informacion Personal</h5>
+                <h6>Nombre de Usuario</h6>
+                <p class="card-text"><small>País: Chile</small></p>
+                <hr>
+                <h5>Informacion de contacto</h5>
+                <p class="card-text">Correo:  Y8H.90hm@gmail.com</p>
+                <p class="card-text"><small> Telefono: +56 9 4586xxxx</small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+<div class="container-fluid mt-3 mb-3">
+<h3>Compras Recientes</h3>
+</div>
+<div class="container mb-5">
+  <div class="row justify-content-center">
+      <p>Fecha: 24 de Marzo de 2022 </p>
+      <div class="card mb-3 long-card">
+        <div class="row g-0">
+          <div class="col-md-3 py-2">
+            <img src="{% static 'app/img/totoro.jpg' %}" class="img-fluid" width="200px">
+          </div>
+          <div class="col-md-6">
+            <div class="card-body">
+              <h4 class="card-title">Macetero Modelo Totoro</h4>
+              <p class="card-text">Precio: $15.900</p>
+              <p class="card-text"><small>Cantidad: 2</small></p>
+            </div>
+          </div>
+          <div class="container-fluid col-md-3">
+            <div class="card-body m-p">
+              <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#resena">Escribir Reseña</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="resena">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Escribir Reseña</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <form class="text-center" action="" method="get">
+              <div class="mb-3">
+                  <textarea class="form-control" placeholder="¿Que opinas sobre producto?" style="height: 300px; width: 465px;"></textarea>
+                </div>
+              <button type="submit" class="btn btn-success">Publicar</button>
+              <button type="reset" class="btn btn-danger">Limpiar</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

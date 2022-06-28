@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Rastreo{% endblock %}
+
+{% block contenido %}
+<div class="container row justify-content-center">
+    <div class="col-sm-10 mt-5 mb-5">
+        <h2>Rastrea tu Pedido</h2>
+        <hr>
+        <div class="form-group">
+          <label for="usr">Ingresa el Codigo de tu compra:</label>
+          <input type="text" class="form-control" value="Y34XDHR" id="usr"><br>
+          <button type="button" class="btn btn-dark" >Buscar</button>
+        </div> 
+    </div>
+<!----------------------------------------------------------------------------------------------------------------------------->
+</div>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="card grid-0">
+          <div class="d-flex justify-content-between px-3 top">
+              <div>
+                  <h5>ORDEN <span class="text-primary font-weight-bold">#Y34XDHR</span></h5>
+              </div>
+              <div class="text-sm-right">
+                  <p class="mb-0">Entrega Esperada <span>01/12/22</span></p>
+                  <p>USPS <span class="font-weight-bold">42422898</span></p>
+              </div>
+          </div> <!-- Add class 'active' to progress -->
+          <div class="d-flex">
+              <div class="col-12">
+                <div class="progress">
+                    <div class="progress-bar" style="width:70%"></div>
+                  </div>
+              </div>
+          </div>
+          <div class="container-fluid">
+              <div class="row justify-content-evenly">
+                  <div class="d-flex justify-content-between align-items-baseline top">
+                      <div class="icon-content"> 
+                          <img class="icon" src="{% static 'app/img/order.png' %}">
+                          <p class="font-weight-bold"><br>Procesando</p>
+                      </div>
+                      <div class="icon-content"> 
+                          <img class="icon" src="{% static 'app/img/order2.png' %}">
+                          <p class="font-weight-bold"><br>Preparando</p>
+                      </div>
+                      <div class="icon-content"> 
+                          <img class="icon" src="{% static 'app/img/order3.png' %}">
+                          <p class="font-weight-bold"><br>En Camino</p>
+                      </div>
+                      <div class="icon-content"> 
+                          <img class="icon" src="{% static 'app/img/order4.png' %}">
+                          <p class="font-weight-bold"><br>Entregado</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

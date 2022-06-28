@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap" rel="stylesheet">
+      <link rel="icon" href="{% static 'app/img/icon.png' %}">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.min.js" integrity="sha512-7x7HoEikRZhV0FAORWP+hrUzl75JW/uLHBbg2kHnPdFmScpIeHY0ieUVSacjusrKrlA/RsA2tDOBvisFmKc3xw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.8/sweetalert2.css" integrity="sha512-40/Lc5CTd+76RzYwpttkBAJU68jKKQy4mnPI52KKOHwRBsGcvQct9cIqpWT/XGLSsQFAcuty1fIuNgqRoZTiGQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+      <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+      <script src="{% static 'app/js/msAlert.js' %}"></script>
+      <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header>
+      <div class="py-3 bg-lightGreen">
+        <div class="container-fluid d-grid gap-5 align-items-center" style="grid-template-columns: 3fr 3fr;">
+          <div>
+              <a href="{% url 'index' %}"><img src="{% static 'app/img/logo2.png' %} " class="logo"></a>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="input-group">
+              <input type="text" class="form-control barsize" placeholder="Búsqueda">
+              <button class="btn dropdown-toggle dropbtn me-2" data-bs-toggle="dropdown" type="button"></button>
+              <div class="input-group-prepend w-80 me-5">
+                <button class="btn"><img src="{% static 'app/img/search.png'%}"></button>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'maceteros' %}">Maceteros</a></li>
+                <li><a class="dropdown-item" href="{% url 'tierraDeHojas' %}">Tierra de hojas</a></li>
+                <li><a class="dropdown-item" href="{% url 'flores' %}">Flores</a></li>
+                <li><a class="dropdown-item" href="{% url 'arbustos' %}">Arbustos</a></li>
+              </ul>
+            </div>
+            {% if user.is_authenticated %}
+              <div class="d-flex justify-content-center avatar">
+                <img src="{% static 'app/img/userplant.png' %}" class="dropdown-toggle" data-bs-toggle="dropdown">
+                <ul class="dropdown-menu dropprofile">
+                  <li><a class="dropdown-item blanco" href="{% url 'perfil' %}">Perfil</a></li>
+                  <li><a class="dropdown-item blanco" href="{% url 'listaDeseos' %}">Lista de deseos</a></li>
+                  <li><a class="dropdown-item blanco" href="{% url 'fundacion' %}">Fundacion</a></li>
+                  <li><a class="dropdown-item blanco" href="{% url 'configuracion' %}">Configuración</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item blanco" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  </header>
+  <nav class="py-2 bg-darkGreen">
+    <div class="container-fluid d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'rastreo' %}"><i class="fa fa-truck"></i> Mis pedidos</a>
+          {% else %}
+            <a class="nav-link" style="cursor: pointer;" onclick="fallo()"><i class="fa fa-truck"></i> Mis pedidos</a>
+          {% endif %}
+        </li>
+        <span class="line"></span>
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'compras' %}"><i class="fa fa-shopping-cart"></i>Compras</a>
+          {% else %}
+            <a class="nav-link" style="cursor: pointer;" onclick="fallo()"><i class="fa fa-shopping-cart"></i> Compras</a>
+          {% endif %}
+        </li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a href="{% url 'perfil' %}" class="nav-link">Bienvenido: {{user.username}}</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="nav-link">Iniciar sesión</a>
+          {% endif %}
+        </li>
+        <span class="line"></span>
+        <li class="nav-item">
+          {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'ayuda' %}"><i class="fa fa-question-circle"></i> Ayuda</a>
+          {% else %}
+            <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </nav> 
+  
+    {% block contenido%}
+
+    {% endblock %}
+    <!--
+    {% if user.is_authenticated %}
+      <div class="fixed-bottom p-5" style="width: 100%; z-index: 0;">
+        <div style="float: right;">
+          <img src="{% static 'app/img/extra.png' %}" width="50px" class="dropdown-toggle" data-bs-toggle="dropdown">
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><h5 class="dropdown-header">Extras</h5></li>
+              <li><a class="dropdown-item" href="{% url 'agregar' %}">Agregar</a></li>
+              <li><a class="dropdown-item" href="{% url 'listarProducto' %}">Lista Productos</a></li>
+              <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+            </ul>
+        </div> 
+      </div>
+    {% endif %}-->
+<!--
+<div class="fixed-bottom p-5" style="width: 100%;">
+  <div style="float: right;">
+    <img src="{% static 'app/img/extra.png' %}" width="50px" class="dropdown-toggle" data-bs-toggle="dropdown">
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><h5 class="dropdown-header">Extras</h5></li>
+        <li><a class="dropdown-item" href="{% url 'agregar' %}">Agregar</a></li>
+        {% if user.is_authenticated %}
+        <li><a class="dropdown-item" href="{% url 'listarProducto' %}">Lista Productos</a></li>
+        {% endif %}
+        {% if user.is_staff == 1 %}
+        <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+        {% endif %}
+      </ul>
+  </div> 
+</div>
+-->
+ 
+    <footer class="bd-footer mt-auto py-3 bg-dark text-white text-center">
+        <h6>Derechos reservados Tonari no Planta ©</h6>
+    </footer>
+  </body>
+</html>
